@@ -127,8 +127,47 @@ upload_exit:
 static void show_result(char *string, char is_over)
 {
 	printf("\rResult: [ %s ]", string);
-	if(is_over)
+	if(is_over){
 		putchar('\n');
+
+
+
+		// tts
+		/*
+		* rdn:           合成音频数字发音方式
+		* volume:        合成音频的音量
+		* pitch:         合成音频的音调
+		* speed:         合成音频对应的语速
+		* voice_name:    合成发音人
+		* sample_rate:   合成音频采样率
+		* text_encoding: 合成文本编码格式
+		*
+		*/
+		// printf("\rResult: [ %s ]", string);
+
+		const char* session_begin_params = "voice_name = xiaoyan, text_encoding = utf8, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
+		const char* filename             = "tts_sample.wav"; //合成的语音文件名称
+		// char* text                 = "您好，这是一个语音合成示例程序"; //合成文本
+		char* text                 = string; //合成文本
+
+		// printf("\n###########################################################################\n");
+		// printf("## 语音合成（Text To Speech，TTS）技术能够自动将任意文字实时转换为连续的 ##\n");
+		// printf("## 自然语音，是一种能够在任何时间、任何地点，向任何人提供语音信息服务的  ##\n");
+		// printf("## 高效便捷手段，非常符合信息时代海量数据、动态更新和个性化查询的需求。  ##\n");
+		// printf("###########################################################################\n\n");
+
+		/* 文本合成 */
+		printf("开始合成 ...\n");
+		// ret = 
+		text_to_speech(text, filename, session_begin_params);
+		// if (MSP_SUCCESS != ret)
+		// {
+		// 	printf("text_to_speech failed, error code: %d.\n", ret);
+		// }
+		printf("合成完毕\n");
+
+		system("play tts_sample.wav");
+	}
 }
 
 static char *g_result = NULL;
@@ -375,37 +414,7 @@ Not started or already stopped.
 		printf("15 sec passed\n");
 
 
-		// tts
-		/*
-		* rdn:           合成音频数字发音方式
-		* volume:        合成音频的音量
-		* pitch:         合成音频的音调
-		* speed:         合成音频对应的语速
-		* voice_name:    合成发音人
-		* sample_rate:   合成音频采样率
-		* text_encoding: 合成文本编码格式
-		*
-		*/
-		const char* session_begin_params = "voice_name = xiaoyan, text_encoding = utf8, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
-		const char* filename             = "tts_sample.wav"; //合成的语音文件名称
-		const char* text                 = "您好，这是一个语音合成示例程序"; //合成文本
 
-		// printf("\n###########################################################################\n");
-		// printf("## 语音合成（Text To Speech，TTS）技术能够自动将任意文字实时转换为连续的 ##\n");
-		// printf("## 自然语音，是一种能够在任何时间、任何地点，向任何人提供语音信息服务的  ##\n");
-		// printf("## 高效便捷手段，非常符合信息时代海量数据、动态更新和个性化查询的需求。  ##\n");
-		// printf("###########################################################################\n\n");
-		
-		/* 文本合成 */
-		printf("开始合成 ...\n");
-		ret = text_to_speech(text, filename, session_begin_params);
-		if (MSP_SUCCESS != ret)
-		{
-			printf("text_to_speech failed, error code: %d.\n", ret);
-		}
-		printf("合成完毕\n");
-
-		system("play tts_sample.wav");
 
 
 
@@ -423,7 +432,7 @@ exit:
 
 // tts
 /* 文本合成 */
-int text_to_speech(const char* src_text, const char* des_path, const char* params)
+int text_to_speech(char* src_text, const char* des_path, const char* params)
 {
 	int          ret          = -1;
 	FILE*        fp           = NULL;
