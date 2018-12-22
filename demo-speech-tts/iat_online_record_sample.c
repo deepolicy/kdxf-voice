@@ -26,6 +26,8 @@
 
 int speak_over = 0;
 
+void time_show();
+
 // tts start
 
 /* wav音频头部格式 */
@@ -129,10 +131,13 @@ upload_exit:
 
 static void show_result(char *string, char is_over)
 {
-	speak_over = 1;
 	printf("\rResult: [ %s ]", string);
 	if(is_over){
 		putchar('\n');
+
+		time_show();
+
+
 
 
 
@@ -180,6 +185,9 @@ static void show_result(char *string, char is_over)
 		printf("合成完毕\n");
 
 		system("play tts_sample.wav");
+
+		speak_over = 1;
+
 	}
 }
 
@@ -351,28 +359,14 @@ static void demo_mic(const char* session_begin_params)
 
 
 
-	time_t now; //实例化time_t结构    
-	struct tm *timenow; //实例化tm结构指针    
-	time(&now);   
-	//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now    
-	  
-	timenow = localtime(&now);   
-	//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)    
-	  
-	printf("Local time is %s/n",asctime(timenow));   
-	//上句中asctime函数把时间转换成字符，通过printf()函数输出   
+	time_show();
 
-	sleep(15);
+	while( speak_over==0 ){
+		;
+	}
 
+		printf("speak_over\n");
 
-	time(&now);   
-	//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now   
-
-	timenow = localtime(&now);   
-	//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)    
-	  
-	printf("Local time is %s/n",asctime(timenow));   
-	//上句中asctime函数把时间转换成字符，通过printf()函数输出  
 
 	// if( (ch = getchar()) == ' ' ){
 	// 	printf("getchar\n");
@@ -449,7 +443,7 @@ int main(int argc, char* argv[])
 
 	if(aud_src != 0) {
 		printf("Demo recognizing the speech from microphone\n");
-		printf("Speak in 15 seconds\n");
+		// printf("Speak in 15 seconds\n");
 
 		demo_mic(session_begin_params);
 
@@ -463,7 +457,7 @@ Speaking done
 Not started or already stopped.
 15 sec passed*/
 
-		printf("15 sec passed\n");
+		// printf("15 sec passed\n");
 
 
 
@@ -476,7 +470,8 @@ Not started or already stopped.
 		demo_file("wav/weather.pcm", session_begin_params); 
 	}
 exit:
-	MSPLogout(); // Logout...
+;
+	// MSPLogout(); // Logout...
 
 	return 0;
 }
@@ -564,4 +559,18 @@ int text_to_speech(char* src_text, const char* des_path, const char* params)
 	}
 
 	return ret;
+}
+void time_show(){
+
+	time_t now; //实例化time_t结构    
+	struct tm *timenow; //实例化tm结构指针    
+	time(&now);   
+	//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now    
+	  
+	timenow = localtime(&now);   
+	//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)    
+	  
+	printf("Local time is %s/n",asctime(timenow));   
+	//上句中asctime函数把时间转换成字符，通过printf()函数输出   
+
 }
