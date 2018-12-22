@@ -7,6 +7,8 @@
 #include <string.h>
 #include <unistd.h>
 
+#include<time.h>
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -22,6 +24,7 @@
 #define FRAME_LEN	640 
 #define	BUFFER_SIZE	4096
 
+int speak_over = 0;
 
 // tts start
 
@@ -126,6 +129,7 @@ upload_exit:
 
 static void show_result(char *string, char is_over)
 {
+	speak_over = 1;
 	printf("\rResult: [ %s ]", string);
 	if(is_over){
 		putchar('\n');
@@ -143,7 +147,16 @@ static void show_result(char *string, char is_over)
 		* text_encoding: 合成文本编码格式
 		*
 		*/
-		// printf("\rResult: [ %s ]", string);
+		// system("play tts_sample.wav");
+		
+		// // printf("\rResult: [ %s ]", string);
+		// char* text_http = "curl http://www.tuling123.com/openapi/api?key=c3cd6d5a754d47bd86a0db70b9324e12&info=";
+
+		// strcat(text_http, string);
+		// system( "curl http://www.tuling123.com/openapi/api?key=c3cd6d5a754d47bd86a0db70b9324e12&info=123" );
+
+
+		
 
 		const char* session_begin_params = "voice_name = xiaoyan, text_encoding = utf8, sample_rate = 16000, speed = 50, volume = 50, pitch = 50, rdn = 2";
 		const char* filename             = "tts_sample.wav"; //合成的语音文件名称
@@ -335,8 +348,47 @@ static void demo_mic(const char* session_begin_params)
 		printf("start listen failed %d\n", errcode);
 	}
 	/* demo 15 seconds recording */
-	while(i++ < 15)
-		sleep(1);
+
+
+
+	time_t now; //实例化time_t结构    
+	struct tm *timenow; //实例化tm结构指针    
+	time(&now);   
+	//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now    
+	  
+	timenow = localtime(&now);   
+	//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)    
+	  
+	printf("Local time is %s/n",asctime(timenow));   
+	//上句中asctime函数把时间转换成字符，通过printf()函数输出   
+
+	sleep(15);
+
+
+	time(&now);   
+	//time函数读取现在的时间(国际标准时间非北京时间)，然后传值给now   
+
+	timenow = localtime(&now);   
+	//localtime函数把从time取得的时间now换算成你电脑中的时间(就是你设置的地区)    
+	  
+	printf("Local time is %s/n",asctime(timenow));   
+	//上句中asctime函数把时间转换成字符，通过printf()函数输出  
+
+	// if( (ch = getchar()) == ' ' ){
+	// 	printf("getchar\n");
+
+	// }
+
+
+	// while( 1 ){
+	// 	if( (ch = getchar()) == 'q' ){
+	// 		printf("getchar\n");
+
+	// 		break;
+	// 	}
+	// 	// sleep(1);
+	// }
+	
 	errcode = sr_stop_listening(&iat);
 	if (errcode) {
 		printf("stop listening failed %d\n", errcode);
@@ -356,7 +408,7 @@ int main(int argc, char* argv[])
 	int upload_on =	1; /* whether upload the user word */
 	/* login params, please do keep the appid correct */
 	const char* login_params = "appid = 5bfcc6d7, work_dir = .";
-	int aud_src = 0; /* from mic or file */
+	int aud_src = 1; /* from mic or file */
 
 	/*
 	* See "iFlytek MSC Reference Manual"
