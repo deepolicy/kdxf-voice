@@ -30,16 +30,13 @@ import time
 
 import numpy as np
 
-# url get 
+# lib for the url connect with get method. 
 import urllib
 import urllib2
 
 import base64
 
 import json
-
-
-
 
 mutex = threading.Lock()
 

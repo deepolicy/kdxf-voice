@@ -3,12 +3,11 @@
 """
 author: zhouxin, inksci@qq.com
 
-talker
-v1: just publish the topic
-v2: publish the text received from TCP connection.
-v3: without json, pure string
+Jan. 1, 2019
+
 """
 
+from __future__ import print_function
 
 import sys
 reload(sys)
@@ -25,61 +24,20 @@ import threading
 
 import base64
 
-
-def tcplink(sock,addr, pub):
+def tcplink(sock, addr, pub):
     print('Accept new connection from %s:%s...' % addr)
-    sock.send( ('Welcome! 创造').encode() )
+    sock.send( ('Welcome! 欢迎使用！').encode() )
     while True:
 
-
-
-
         data = sock.recv(1024)
-        # print("data: ", data)
 
         data = data.decode( "utf-8" )
-        data_str = str( data )
-        # data = str( data )
-
-        # # # mys='\xe4\xbd\xa0\xe5\x9c\xa8\xe5\x81'
-        mys = data
-         
-        # sl = list(mys)
-        # # print(sl)
-        # i=0 
-        # while i<len(sl):
-        #     s=sl[i]
-        #     try:
-        #         s=s.encode('raw_unicode_escape').decode('utf-8')
-        #         i+=1
-        #     except:
-        #         #删掉它 
-        #         sl.remove(s)
-        mys=''.join(mys)
-
-        print( "mys" )
-
-        print(mys)
-        # print mys
-
-        # data = mys
+        print("data: ", data)
 
         data_b64 = base64.b64encode( data )
 
-        print( data_b64 )
-        print( base64.b64decode( data_b64 ) )
-        print( base64.b64decode( data_b64 ).encode("utf-8") )
-        print( base64.b64decode( data_b64 ).decode("utf-8") )
-
-
-        print( base64.b64decode( "6K+t5rOV" ) )
-
-        print( data.encode("utf-8") )
-
-        print("data9867: ", data)
-        print("data_str: ", data_str)
-
-        print( ("----").join( str( data ).split("\\u") ) )
+        print( "data_b64: ", data_b64 )
+        # print( base64.b64decode( data_b64 ) )
 
         if data == "close":
             break
@@ -88,11 +46,7 @@ def tcplink(sock,addr, pub):
             pub.publish( str( data_b64 ) )
             # data: "6Iu55p6c5aW95ZCD5ZCX77yf"
 
-            # pub.publish( "6Iu55p6c5aW95ZCD5ZCX77yf" )
-
-            
-
-            data_send = 'success publish the topic'
+            data_send = 'successfully publish the topic!'
 
         sock.send( data_send )
     sock.close()
