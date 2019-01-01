@@ -13,6 +13,41 @@
 #include "msp_cmn.h"
 #include "msp_errors.h"
 
+
+
+
+
+
+
+
+
+
+#include <sys/socket.h>
+
+/* #include <linux/in.h> */
+#include <netinet/in.h>
+/* https://blog.csdn.net/akwang1/article/details/8281270 */
+
+#include <unistd.h>
+/* https://baike.baidu.com/item/write%E5%87%BD%E6%95%B0/5755349?fr=aladdin */
+
+#include <sys/types.h>
+
+#define PORT 15001
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* wav音频头部格式 */
 typedef struct _wave_pcm_hdr
 {
@@ -163,14 +198,152 @@ int main(int argc, char* argv[])
 	printf("## 自然语音，是一种能够在任何时间、任何地点，向任何人提供语音信息服务的  ##\n");
 	printf("## 高效便捷手段，非常符合信息时代海量数据、动态更新和个性化查询的需求。  ##\n");
 	printf("###########################################################################\n\n");
-	/* 文本合成 */
-	printf("开始合成 ...\n");
-	ret = text_to_speech(text, filename, session_begin_params);
-	if (MSP_SUCCESS != ret)
-	{
-		printf("text_to_speech failed, error code: %d.\n", ret);
-	}
-	printf("合成完毕\n");
+
+
+
+
+
+
+
+
+
+
+
+
+    int         socketfd, accsocfd;
+    struct sockaddr_in  s_addr, r_addr;
+    socklen_t       len;
+    int         recdata;
+    char            buf[1024];
+    memset( buf, 0x00, sizeof(buf) );
+    /* 创建套接字 */
+    if ( -1 == (socketfd = socket( AF_INET, SOCK_STREAM, 0 ) ) )
+    {
+        printf( "socketfd is created failed!\n" );
+        return(-1);
+    }
+    ;
+    printf( "socket create success!\n" );
+
+    /* 将本地协议地址与sockfd绑定 */
+    memset( &s_addr, 0x00, sizeof(s_addr) );
+    s_addr.sin_family   = PF_INET;
+    s_addr.sin_port     = htons( PORT );
+    s_addr.sin_addr.s_addr  = htons( INADDR_ANY ); /* inet_addr_any 一个服务器可能有多个网卡，随便从中选1个 */
+    if ( -1 == bind( socketfd, (struct sockaddr *) &s_addr, sizeof(s_addr) ) )
+    {
+        printf( "bind failed!\n" );
+        return(-1);
+    }
+    printf( "bind suc!\n" );
+
+    /* 监听本地端口 */
+    if ( -1 == listen( socketfd, 10 ) )
+    {
+        printf( "listen failed!\n" );
+        return(-1);
+    }
+    printf( "listen suc!\n" );
+
+    while ( 1 )
+    {
+        len     = sizeof(struct sockaddr);
+        accsocfd    = accept( socketfd, (struct sockaddr *) &r_addr, &len );
+        if ( -1 == accsocfd )
+        {
+            printf( "accept failed!\n" );
+            return(-1);
+        }
+        printf( "accept suc !\nServer get connect from %x port is %x", ntohl( r_addr.sin_addr.s_addr ), ntohl( r_addr.sin_port ) );
+
+
+        /* 向客服端发送数据 */
+        if ( -1 == write( accsocfd, "this is first data from sr!\n", 50 ) )
+        {
+            printf( "write failed!\n" );
+            return(-1);
+        }
+        printf( "write suc!\n" );
+
+
+        printf( "*********************\n" );
+
+
+
+
+        // // receive
+        // char recvBuf[1024];
+
+        // if ( -1 == recv( accsocfd, recvBuf, 1024, 0 ) )
+        // {
+        //     printf( "recv failed!\n" );
+        //     return(-1);
+        // }
+
+        // printf( "recv suc!\n" );
+        // printf( "recvBuf  = [%s]\n", recvBuf );
+        // // printf( "recvBuf len is = [%d]\n", int(strlen( recvBuf ) ) );
+
+
+    // receive
+    if ( -1 == (recdata = read( accsocfd, buf, sizeof(buf) ) ) )
+    {
+        printf( "read failed!\n" );
+        return(-1);
+    }
+    printf( "read suc!\n" );
+    buf[recdata] = '\0';
+    printf( "recdata  = [%s]\n", buf );
+    printf( "recdata len is = [%d]\n", recdata );
+
+
+
+
+		/* 文本合成 */
+		printf("开始合成 ...\n");
+		ret = text_to_speech( buf , filename, session_begin_params);
+		if (MSP_SUCCESS != ret)
+		{
+			printf("text_to_speech failed, error code: %d.\n", ret);
+		}
+		printf("合成完毕\n");
+
+		system("play tts_sample.wav");
+
+
+
+
+
+
+
+        close( accsocfd );
+
+
+
+
+    }
+    close( socketfd );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exit:
 	printf("按任意键退出 ...\n");

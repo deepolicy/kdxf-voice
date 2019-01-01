@@ -712,3 +712,82 @@ Content-Length: 69
 [2018/12/20 16:59:49 100] ivw_upload 733  SYS_MSG_SHUTDOWN  
 [2018/12/20 16:59:49 100] ivw_upload 610  save no upload data  
 [2018/12/20 16:59:49 100] ivw_upload 622  data size:  0  
+============================================================
+Time  2018/12/31 21:45:39 976 
+============================================================
+[2018/12/31 21:45:39 976] ivw_upload 722  SYS_MSG_LOAD  
+[2018/12/31 21:45:39 976] ivw_upload 781  IVW_UPLOAD_MSG_QUE  
+[2018/12/31 21:45:39 976] ivw_upload 794  ==================== Query Start ====================  
+[2018/12/31 21:45:39 976] ivw_upload 645  try2_query  
+[2018/12/31 21:45:39 976] ivw_upload 653  query_data   {"cmd":"uploadquery","input":{"appid":"5bfcc6d7"}}  
+[2018/12/31 21:45:39 976] ivw_upload 665  Do query  
+[2018/12/31 21:45:39 977] ivw_upload 673  compressed data_len:  69  
+[2018/12/31 21:45:39 977] ivw_upload 677  xor data_len:  69  
+[2018/12/31 21:45:39 977] ivw_upload 305  build_httpreq type=  query  
+[2018/12/31 21:45:39 977] ivw_upload 340  unknown  
+[2018/12/31 21:45:39 977] ivw_upload 402  POST /internal/awaken/comm HTTP/1.1
+Host: ins.xfyun.cn
+Connection: Keep-Alive
+Content-Type: application/octet-steam
+Content-Length: 69
+
+Œ¬QMÉJVµU-*ÏÎHK.+J*­SÕVÍË,/*Vµ­QM+/ÏNœ!¢" œ¢Ÿ,ÒÑ5M}Y4  
+[2018/12/31 21:45:39 977] ivw_upload 408  handle_httpresp type=  query  
+[2018/12/31 21:45:39 977] network    501  gethttpresp  http://ins.xfyun.cn/internal/awaken/comm  nil  
+[2018/12/31 21:45:39 977] network    263  gethostbyname  ins.xfyun.cn  1  
+[2018/12/31 21:45:39 979] network    245  dns resp  10214  1  
+[2018/12/31 21:45:39 979] network    493  gethttpresp dns failed, err =   10214  
+[2018/12/31 21:45:39 979] ivw_upload 514  http resp  nil  10214  nil  
+[2018/12/31 21:45:39 979] ivw_upload 587  http failed,  10214  query  
+[2018/12/31 21:45:39 979] ivw_upload 57   ==================== Query Finished ====================  
+[2018/12/31 21:46:22 149] ivw_upload 733  SYS_MSG_SHUTDOWN  
+[2018/12/31 21:46:22 149] ivw_upload 610  save no upload data  
+[2018/12/31 21:46:22 149] ivw_upload 622  data size:  0  
+============================================================
+Time  2018/12/31 21:46:26 963 
+============================================================
+[2018/12/31 21:46:26 963] ivw_upload 722  SYS_MSG_LOAD  
+[2018/12/31 21:46:26 963] ivw_upload 781  IVW_UPLOAD_MSG_QUE  
+[2018/12/31 21:46:26 964] ivw_upload 794  ==================== Query Start ====================  
+[2018/12/31 21:46:26 964] ivw_upload 645  try2_query  
+[2018/12/31 21:46:26 964] ivw_upload 653  query_data   {"cmd":"uploadquery","input":{"appid":"5bfcc6d7"}}  
+[2018/12/31 21:46:26 964] ivw_upload 665  Do query  
+[2018/12/31 21:46:26 964] ivw_upload 673  compressed data_len:  69  
+[2018/12/31 21:46:26 964] ivw_upload 677  xor data_len:  69  
+[2018/12/31 21:46:26 964] ivw_upload 305  build_httpreq type=  query  
+[2018/12/31 21:46:26 964] ivw_upload 340  unknown  
+[2018/12/31 21:46:26 964] ivw_upload 402  POST /internal/awaken/comm HTTP/1.1
+Host: ins.xfyun.cn
+Connection: Keep-Alive
+Content-Type: application/octet-steam
+Content-Length: 69
+
+Œ¬QMÉJVµU-*ÏÎHK.+J*­SÕVÍË,/*Vµ­QM+/ÏNœ!¢" œ¢Ÿ,ÒÑ5M}Y4  
+[2018/12/31 21:46:26 964] ivw_upload 408  handle_httpresp type=  query  
+[2018/12/31 21:46:26 964] network    501  gethttpresp  http://ins.xfyun.cn/internal/awaken/comm  nil  
+[2018/12/31 21:46:26 964] network    263  gethostbyname  ins.xfyun.cn  1  
+[2018/12/31 21:46:26 998] network    245  dns resp  0  1  
+[2018/12/31 21:46:26 998] network    487  gethttpresp dns ok  117.121.50.210  
+[2018/12/31 21:46:26 998] network    445  gethttpresp2  117.121.50.210  80  2  
+[2018/12/31 21:46:26 998] network    465  prot_type  tcp  
+[2018/12/31 21:46:27 060] network    350  connected  2  
+[2018/12/31 21:46:27 060] network    353  send ok  211  2  
+[2018/12/31 21:46:27 132] network    362  readable  2  
+[2018/12/31 21:46:27 133] network    366  HTTP/1.1 502 Bad Gateway
+Server: nginx
+Date: Mon, 31 Dec 2018 13:46:27 GMT
+Content-Type: text/html
+Content-Length: 166
+Connection: keep-alive
+
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>
+  
+[2018/12/31 21:46:27 133] ivw_upload 514  http resp  nil  0  udata(c4045e48) 
+[2018/12/31 21:46:27 133] ivw_upload 520  http connect failed, statuscode =  502  
+[2018/12/31 21:46:27 133] ivw_upload 57   ==================== Query Finished ====================  
