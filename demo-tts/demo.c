@@ -254,47 +254,33 @@ int main(int argc, char* argv[])
             printf( "accept failed!\n" );
             return(-1);
         }
-        printf( "accept suc !\nServer get connect from %x port is %x", ntohl( r_addr.sin_addr.s_addr ), ntohl( r_addr.sin_port ) );
+        printf( "accept success !\nServer get connect from %x port is %x", ntohl( r_addr.sin_addr.s_addr ), ntohl( r_addr.sin_port ) );
 
 
-        /* 向客服端发送数据 */
-        if ( -1 == write( accsocfd, "this is first data from sr!\n", 50 ) )
+
+        // send
+        if ( -1 == write( accsocfd, "this is first data from sr!\n", sizeof("this is first data from sr!\n") ) )
         {
             printf( "write failed!\n" );
             return(-1);
         }
-        printf( "write suc!\n" );
+        printf( "write success!\n" );
 
 
         printf( "*********************\n" );
 
 
 
-
-        // // receive
-        // char recvBuf[1024];
-
-        // if ( -1 == recv( accsocfd, recvBuf, 1024, 0 ) )
-        // {
-        //     printf( "recv failed!\n" );
-        //     return(-1);
-        // }
-
-        // printf( "recv suc!\n" );
-        // printf( "recvBuf  = [%s]\n", recvBuf );
-        // // printf( "recvBuf len is = [%d]\n", int(strlen( recvBuf ) ) );
-
-
-    // receive
-    if ( -1 == (recdata = read( accsocfd, buf, sizeof(buf) ) ) )
-    {
-        printf( "read failed!\n" );
-        return(-1);
-    }
-    printf( "read suc!\n" );
-    buf[recdata] = '\0';
-    printf( "recdata  = [%s]\n", buf );
-    printf( "recdata len is = [%d]\n", recdata );
+	    // receive
+	    if ( -1 == (recdata = read( accsocfd, buf, sizeof(buf) ) ) )
+	    {
+	        printf( "read failed!\n" );
+	        return(-1);
+	    }
+	    printf( "read success!\n" );
+	    buf[recdata] = '\0';
+	    printf( "recdata  = [%s]\n", buf );
+	    printf( "recdata len is = [%d]\n", recdata );
 
 
 
