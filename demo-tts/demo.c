@@ -247,6 +247,7 @@ int main(int argc, char* argv[])
 
     while ( 1 )
     {
+    	// wait for connect
         len     = sizeof(struct sockaddr);
         accsocfd    = accept( socketfd, (struct sockaddr *) &r_addr, &len );
         if ( -1 == accsocfd )
@@ -259,16 +260,12 @@ int main(int argc, char* argv[])
 
 
         // send
-        if ( -1 == write( accsocfd, "this is first data from sr!\n", sizeof("this is first data from sr!\n") ) )
+        if ( -1 == write( accsocfd, "this is first data from server!\n", sizeof("this is first data from server!\n") ) )
         {
             printf( "write failed!\n" );
             return(-1);
         }
         printf( "write success!\n" );
-
-
-        printf( "*********************\n" );
-
 
 
 	    // receive

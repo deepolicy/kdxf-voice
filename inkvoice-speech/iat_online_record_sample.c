@@ -190,7 +190,7 @@ static void show_result(char *string, char is_over)
 
 
 
-	char* text_tcp                 = string; //合成文本
+	char* text_tcp = string; //合成文本
 
     int csocfd;
     int recdata;
@@ -212,10 +212,9 @@ static void show_result(char *string, char is_over)
     mysockaddr.sin_family   = PF_INET;
     mysockaddr.sin_port = htons( PORT );
     inet_pton( AF_INET, "127.0.0.1", &mysockaddr.sin_addr.s_addr );
-/* s_add.sin_addr.s_addr= inet_addr("172.19.230.113"); / * ip转换为4字节整形，使用时需要根据服务端ip进行更改 * / */
 
 
-    /* connect to the sr */
+    /* connect to the server */
     if ( -1 == connect( csocfd, (struct sockaddr *) &mysockaddr, sizeof(mysockaddr) ) )
     {
         printf( "connect failed!\n" );
@@ -272,7 +271,7 @@ static void show_result(char *string, char is_over)
 
 
 
-		speak_over = 1;
+	speak_over = 1;
 
 	}
 }
