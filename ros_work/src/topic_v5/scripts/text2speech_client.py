@@ -15,8 +15,6 @@ import rospy
 
 from std_msgs.msg import String
 
-import numpy as np
-
 import base64
 
 import socket
@@ -40,6 +38,8 @@ def callback_function(data):
 
 
 if __name__=='__main__':
+
+    print(" \n text2speech client \n ")
 
     rospy.init_node('ink_control', anonymous=True)
 

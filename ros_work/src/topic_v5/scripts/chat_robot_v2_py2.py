@@ -24,8 +24,7 @@ from std_msgs.msg import String
 import time
 
 # lib for the url connect with get method. 
-# import urllib2 # py2
-import urllib.request
+import urllib2
 
 import base64
 
@@ -38,9 +37,9 @@ def chat( query ):
 
     url = "http://www.tuling123.com/openapi/api?key=c3cd6d5a754d47bd86a0db70b9324e12&info=" + query
 
-    req = urllib.request.Request(url)
+    req = urllib2.Request(url)
 
-    url_result = urllib.request.urlopen(req).read()
+    url_result = urllib2.urlopen(req).read()
     print( "url_result: ", url_result )
     # url_result:  {"code":100000,"text":"呵呵，苹果维生素含量很高哦！"}
 
@@ -64,8 +63,6 @@ def callback_function(data):
 
 
 if __name__=='__main__':
-
-    print(" \n chat robot \n ")
 
     rospy.init_node('ink_control', anonymous=True)
 

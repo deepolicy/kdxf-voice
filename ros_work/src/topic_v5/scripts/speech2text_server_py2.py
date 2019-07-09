@@ -9,14 +9,15 @@ Jan. 1, 2019
 
 from __future__ import print_function
 
-# py2
-# import sys
-# reload(sys)
-# sys.setdefaultencoding('utf8')
-# # https://www.cnblogs.com/QuLory/p/3615584.html
+import sys
+reload(sys)
+sys.setdefaultencoding('utf8')
+# https://www.cnblogs.com/QuLory/p/3615584.html
 
 import rospy
 from std_msgs.msg import String
+
+import numpy as np
 
 import socket
 import threading
