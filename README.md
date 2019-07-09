@@ -27,8 +27,6 @@ rec -c 1 -U -r 8000 -2 radio.wav trim 0 00:30
 In:0.00% 00:00:***30***.72 [00:00:00.00] Out:240k  [      |      ]        Clip:0    
 Done.
 
-代码使用了 conda，相应的环境名为：Ros-v2
-
 ## 2. 部署项目
 ### 2.1 将 github 代码部署到 ~/kdxf-voice/ 文件夹下
 
