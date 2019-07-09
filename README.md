@@ -16,14 +16,9 @@
 conda create -n ROS-v2 python=3.6
 source activate ROS-v2
 pip install -U rosdep rosinstall_generator wstool rosinstall six vcstools
-```
-
-### 1.2 安装 http socket 相应的 python 包
-```
 pip install bottle_websocket
 ```
-
-### 1.3 测试系统的录音功能
+### 1.2 测试系统的录音功能
 ```
 rec -c 1 -U -r 8000 -2 radio.wav trim 0 00:30
 ```
