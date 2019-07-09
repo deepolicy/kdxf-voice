@@ -9,32 +9,21 @@
 ![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/ros.png)
 
 
-## 依赖
+## 1. 配置依赖
 
-运行环境：
-
-### 1(ROS)
-Python 3.6
-(conda.env: conda create -n kdxf-voice-v1 python=3.6)
-
-roscore: 不需要特殊依赖。
-
-speech2text_server.py: ros的python包。
+### 1.1 使用 conda 创建环境
+｀｀｀
+conda create -n ROS-v2 python=3.6
+source activate ROS-v2
 pip install -U rosdep rosinstall_generator wstool rosinstall six vcstools
+｀｀｀
 
-### 2(http socket)
+### 1.2 安装 http socket 相应的 python 包
+｀｀｀
 pip install bottle_websocket
+｀｀｀
 
-
-更多...
-发音调用系统的软件。
-=======
-
-
-
-
-
-### 测试系统的录音功能
+### 1.3 测试系统的录音功能
 rec -c 1 -U -r 8000 -2 radio.wav trim 0 00:30
 
 将会进行 30 秒的录音：
@@ -44,12 +33,13 @@ Done.
 
 代码使用了 conda，相应的环境名为：Ros-v2
 
-### 将 github 代码部署到 ~/kdxf-voice/ 文件夹下
+## 2. 部署项目
+### 2.1 将 github 代码部署到 ~/kdxf-voice/ 文件夹下
 
 则 ros 工作路径为：
 ~/kdxf-voice/ros_work
 
-运行 ~/kdxf-voice/python_sh 文件夹下的 sh 脚本：
+### 2.2 运行 ~/kdxf-voice/python_sh 文件夹下的 sh 脚本
 
 ![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/kdxf-voice.png)
 
