@@ -9,7 +9,6 @@
 ![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/ros.png)
 
 
-<<<<<<< HEAD
 软件路径：
 将kdxf-voice文件夹放在~/文件夹下，即：~/kdxf-voice
 
@@ -31,6 +30,11 @@ pip install bottle_websocket
 更多...
 发音调用系统的软件。
 =======
+
+
+
+
+
 ### 测试系统的录音功能
 rec -c 1 -U -r 8000 -2 radio.wav trim 0 00:30
 
@@ -60,10 +64,6 @@ bat_run.sh        roscore.sh
 sh_test                
 
 
-- text2speech_client.sh
-
-
-
 
 py_run.py         
 
@@ -85,4 +85,3 @@ python 话题监听模块。将从 ros 中监听到的文本发送给 ***kdxf �
 
 kdxf 语音合成模块。运行 kdxf 的 c 程序，将文本合成语音并播放。
 
->>>>>>> ed68052fa8e442f8a61c82741ae3a44c3bb1ef05
