@@ -9,8 +9,7 @@
 ![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/ros.png)
 
 
-软件路径：
-将kdxf-voice文件夹放在~/文件夹下，即：~/kdxf-voice
+## 依赖
 
 运行环境：
 
@@ -50,7 +49,7 @@ Done.
 则 ros 工作路径为：
 ~/kdxf-voice/ros_work
 
-运行 ~/kdxf-voice/python_sh 文件夹下的 python 脚本：
+运行 ~/kdxf-voice/python_sh 文件夹下的 sh 脚本：
 
 ![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/kdxf-voice.png)
 
