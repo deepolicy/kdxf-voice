@@ -50,22 +50,14 @@ Done.
 则 ros 工作路径为：
 ~/kdxf-voice/ros_work
 
-![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/kdxf-voice.png)
-
 运行 ~/kdxf-voice/python_sh 文件夹下的 python 脚本：
 
-bat_run.sh        roscore.sh             
+![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/kdxf-voice.png)
 
-- chat_robot_v2.sh 
+- roscore.sh
 
-机器人聊天系统，接收 ros 中发布的文本消息，得到相应的回答并发送到 ros 系统中。
+运行 roscore，启动 ros 系统。 
 
-
-sh_test                
-
-
-
-py_run.py         
 
 - speech2text.sh
 
@@ -81,7 +73,17 @@ python 话题发布模块。将来自 ***kdxf 语音识别模块*** 提交的文
 
 python 话题监听模块。将从 ros 中监听到的文本发送给 ***kdxf 语音合成模块***。
 
+
 - text2speech.sh
 
 kdxf 语音合成模块。运行 kdxf 的 c 程序，将文本合成语音并播放。
 
+
+- chat_robot_v2.sh 
+
+机器人聊天系统，接收 ros 中发布的文本消息，得到相应的回答并发送到 ros 系统中。
+
+
+- bat_run.sh        
+
+批量运行以上的 sh 脚本
