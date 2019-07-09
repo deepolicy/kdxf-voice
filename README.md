@@ -24,6 +24,8 @@ Done.
 则 ros 工作路径为：
 ~/kdxf-voice/ros_work
 
+![inksci](https://github.com/inksci/kdxf-voice/blob/master/assets/.png)
+
 运行 ~/kdxf-voice/python_sh 文件夹下的 python 脚本：
 
 bat_run.sh        roscore.sh             
